@@ -1,0 +1,312 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; 
+}
+.container-fluid{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+#map {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    right: 0;
+    position:absolute;
+    z-index: 1;
+}
+/*danhsach tỉnh huyện*/
+.sidebar{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: auto;
+    background: transparent;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/*MỚI taynguyen*/
+.taynguyen-item{
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1000;
+}
+.taynguyen-item:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+/* tinh*/
+.tinh-list {
+    display: none;
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 2px solid #007bff;
+    transition: max-height 0.3s ease-in-out;
+}
+.tinh-item {
+    background-color: #007bff;
+    color: white;
+    padding: 8px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+.tinh-item:hover {
+    background-color: #0056b3;
+}
+/*huyện*/
+.huyen-item{
+    background-color: #648ce2;
+    color: white;
+    padding: 8px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+.huyen-item:hover{
+    background-color: #4777e14c;
+}
+.huyen-list{
+    display: none;
+    margin-top: 5px;
+    padding-left: 10px;
+    border-left: 2px solid #f0f0ee;
+    transition: max-height 0.3s ease-in-out;
+    
+}
+.huyen-item.bi{
+    font-size:large;
+    color: black;
+}
+.huyen-item.selected.bi{
+    color: green;
+}
+/*nút thoát thông báo*/
+.thongtin{
+    color: red;
+}
+
+/* PHẦN HIỂN THỊ THANH THÔNG BÁO*/
+
+
+.soil-panel {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%) translateY(100%);
+  width: min(420px, calc(100% - 32px));
+  background: #f8f9fa;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+  padding: 16px 20px 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  /* LƯU Ý: không cho panel tự cuộn nữa */
+  overflow: hidden;
+  max-height: 70vh; /* vẫn giới hạn tổng chiều cao */
+  z-index: 10;
+  transition: transform 0.5s ease;
+  background: #c8e0f8; /* xám rất nhẹ – đẹp hơn #f8f9fa */
+}
+
+/* Vùng nội dung cuộn */
+.panel-scroll {
+  margin-top: 12px;
+  max-height: 40vh;        /* chỉnh tùy ý: phần cuộn chiếm ~40% màn hình */
+  overflow-y: auto;
+  padding-right: 4px;      /* chừa chỗ cho thanh cuộn */
+}
+
+/* Nút đóng ở góc trên bên phải */
+.panel-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.06);
+  font-size: 16px;
+  line-height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-close:hover {
+  background: rgba(0,0,0,0.12);
+}
+
+/* Ghi chú nhỏ cho "cây cà phê kinh doanh" */
+.panel-note {
+  margin: 4px 0 4px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #f7f3f3;
+}
+
+.soil-panel.hidden {
+  display: none;
+}
+
+.panel-handle {
+  width: 50px;
+  height: 4px;
+  border-radius: 999px;
+  background: #ddd;
+  margin: 0 auto 12px;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.panel-subtitle {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+}
+
+.panel-section {
+  background: #f7f7f9;
+  border-radius: 16px;
+  padding: 10px 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.panel-soil .soil-left {
+  flex: 1.2;
+}
+
+.panel-soil .soil-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.panel-soil img {
+  width: 90px;
+  height: 90px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.panel-section table,
+.panel-soil table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.panel-section td:first-child,
+.panel-soil td:first-child {
+  color: #f62d2d;
+  padding-right: 6px;
+}
+
+.panel-section td:last-child,
+.panel-soil td:last-child {
+  font-weight: 500;
+}
+
+/* TẠO THANH CUỘN CHO PANEL-SOIL */
+.panel-soil {
+    max-height: 150px;  /* chiều cao cố định, chỉnh tùy ý */
+    overflow-y: auto;   /* bật thanh cuộn */
+}
+
+.panel-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: white;
+}
+
+.panel-table th,
+.panel-table td {
+  padding: 6px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.panel-table th {
+  text-align: left;
+  font-size: 12px;
+  color: #f9f5f5f5;
+  font-weight: 600;
+}
+
+
+.panel-fertilizer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.fert-chart-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #eee, #ccc);
+}
+
+.fert-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+}
+.fert-list li {
+  margin-bottom: 4px;
+}
+
+/* PHẦN HIỆU ỨNG HIỆN THÔNG TIN */
+
+
+
+#soil-panel.panel-open {
+  transform: translate(-50%, 0);
+}
+
+
+#soil-panel.panel-closed {
+  transform: translate(-50%, 100%);
+}
+
+
+/* phần css cho bảng bón phân*/
+
+
+.panel-table-caphekinhdoanh{
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: #ffffff !important;   /* nền trắng */
+  border-bottom: 1px solid #f8a2a2;   /* đường kẻ ngang */
+}
+
+.crop-header{
+  color: #007bff;
+}
