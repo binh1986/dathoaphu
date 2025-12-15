@@ -106,6 +106,10 @@ body,html{
 
 /* PHẦN HIỂN THỊ THANH THÔNG BÁO*/
 
+/* =========================
+   PHẦN HIỂN THỊ SOIL PANEL
+   - CHỈ 1 THANH CUỘN DUY NHẤT: .soil-panel
+   ========================= */
 
 .soil-panel {
   position: absolute;
@@ -113,28 +117,51 @@ body,html{
   bottom: 16px;
   transform: translateX(-50%) translateY(100%);
   width: min(420px, calc(100% - 32px));
-  background: #f8f9fa;
+
+  background: #c8e0f8;
   border-radius: 24px;
   box-shadow: 0 18px 40px rgba(0,0,0,0.25);
-  padding: 16px 20px 20px;
+  padding: 8px 8px 8px;
+  padding-top:5px ;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  /* LƯU Ý: không cho panel tự cuộn nữa */
-  overflow: hidden;
-  max-height: 70vh; /* vẫn giới hạn tổng chiều cao */
+
+  /* ✅ 1 thanh cuộn lớn duy nhất */
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
   z-index: 10;
   transition: transform 0.5s ease;
-  background: #c8e0f8; /* xám rất nhẹ – đẹp hơn #f8f9fa */
 }
 
-/* Vùng nội dung cuộn */
-.panel-scroll {
-  margin-top: 12px;
-  max-height: 40vh;        /* chỉnh tùy ý: phần cuộn chiếm ~40% màn hình */
-  overflow-y: auto;
-  padding-right: 4px;      /* chừa chỗ cho thanh cuộn */
+/* (Tuỳ chọn) Ẩn thanh cuộn nhưng vẫn cuộn được */
+/*
+.soil-panel { scrollbar-width: none; -ms-overflow-style: none; }
+.soil-panel::-webkit-scrollbar { display: none; }
+*/
+
+.soil-panel.hidden {
+  display: none;
 }
 
-/* Nút đóng ở góc trên bên phải */
+/* Hiệu ứng lên/xuống */
+#soil-panel.panel-open {
+  transform: translate(-50%, 0);
+}
+#soil-panel.panel-closed {
+  transform: translate(-50%, 100%);
+}
+
+/* Thanh kéo nhỏ */
+.panel-handle {
+  width: 50px;
+  height: 4px;
+  border-radius: 999px;
+  background: #ddd;
+  margin: 0 auto 12px;
+}
+
+/* Nút đóng */
 .panel-close {
   position: absolute;
   top: 10px;
@@ -150,56 +177,44 @@ body,html{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 11;
 }
-
 .panel-close:hover {
   background: rgba(0,0,0,0.12);
 }
 
-/* Ghi chú nhỏ cho "cây cà phê kinh doanh" */
-.panel-note {
-  margin: 4px 0 4px;
-  font-size: 0.85rem;
-  font-style: italic;
-  color: #f7f3f3;
-}
-
-.soil-panel.hidden {
-  display: none;
-}
-
-.panel-handle {
-  width: 50px;
-  height: 4px;
-  border-radius: 999px;
-  background: #ddd;
-  margin: 0 auto 12px;
-}
-
+/* Title */
 .panel-title {
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 8px;
 }
-
 .panel-subtitle {
   font-size: 16px;
   font-weight: 700;
   margin: 16px 0 8px;
 }
 
+/* Section box */
 .panel-section {
   background: #f7f7f9;
   border-radius: 16px;
   padding: 10px 12px;
   display: flex;
   gap: 8px;
+
+  /* ✅ KHÔNG cuộn con */
+  overflow: visible;
 }
 
-.panel-soil .soil-left {
-  flex: 1.2;
+/* ========== KHỐI THUỘC TÍNH ĐẤT ========== */
+.panel-soil {
+  /* ✅ KHÔNG tạo thanh cuộn con nữa */
+  max-height: none !important;
+  overflow: visible !important;
 }
 
+.panel-soil .soil-left { flex: 1.2; }
 .panel-soil .soil-right {
   flex: 1;
   display: flex;
@@ -226,61 +241,90 @@ body,html{
   color: #f62d2d;
   padding-right: 6px;
 }
-
 .panel-section td:last-child,
 .panel-soil td:last-child {
   font-weight: 500;
 }
 
-/* TẠO THANH CUỘN CHO PANEL-SOIL */
-.panel-soil {
-    max-height: 150px;  /* chiều cao cố định, chỉnh tùy ý */
-    overflow-y: auto;   /* bật thanh cuộn */
+/* ✅ .panel-scroll KHÔNG còn scroll – cuộn chung bằng .soil-panel */
+.panel-scroll {
+  margin-top: 12px;
+  max-height: none;
+  overflow: visible;
+  padding-right: 0;
 }
 
+/* Bảng chung */
 .panel-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
-  background: white;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
 }
-
 .panel-table th,
 .panel-table td {
   padding: 6px 4px;
   border-bottom: 1px solid #eee;
 }
-
 .panel-table th {
   text-align: left;
   font-size: 12px;
-  color: #f9f5f5f5;
+  color: #222;        /* đổi lại cho dễ đọc */
   font-weight: 600;
 }
 
+/* Ghi chú */
+.panel-note {
+  margin: 4px 0 4px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: #333;
+}
 
+/* ========== BẢNG BÓN PHÂN ========== */
+.panel-table-caphekinhdoanh {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: #ffffff !important;
+  border-bottom: 1px solid #f8a2a2;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.panel-table-caphekinhdoanh th,
+.panel-table-caphekinhdoanh td {
+  padding: 6px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.crop-header th {
+  color: #007bff;
+  font-weight: 700;
+  background: #f3f8ff;
+}
+
+/* Fertilizer block */
 .panel-fertilizer {
   display: flex;
   gap: 10px;
   align-items: center;
 }
-
 .fert-chart-placeholder {
   width: 90px;
   height: 90px;
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #eee, #ccc);
 }
-
 .fert-list {
   list-style: none;
   margin: 0;
   padding: 0;
   font-size: 13px;
 }
-.fert-list li {
-  margin-bottom: 4px;
-}
+.fert-list li { margin-bottom: 4px; }
 
 /* PHẦN HIỆU ỨNG HIỆN THÔNG TIN */
 
@@ -309,4 +353,51 @@ body,html{
 
 .crop-header{
   color: #007bff;
+}
+
+/* Thanh cuộn chính của soil-panel */
+.soil-panel::-webkit-scrollbar {
+  width: 8px;                 /* độ dày thanh cuộn */
+}
+
+.soil-panel::-webkit-scrollbar-track {
+  background: transparent;    /* nền trong */
+  border-radius: 999px;
+}
+
+.soil-panel::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.25);  /* màu thanh kéo */
+  border-radius: 999px;          /* BO GÓC TRÒN */
+}
+
+.soil-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+
+/*cố dịnh nút thoát*/
+.panel-close{
+  position: sticky;     /* 🔑 CHÌA KHÓA */
+  top: 2px;             /* cách mép trên panel */
+  margin-left: auto;    /* đẩy sang phải */
+  
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.08);
+
+  font-size: 16px;
+  line-height: 28px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 20;          /* nổi trên nội dung */
+}
+
+.panel-close:hover{
+  background: rgba(0,0,0,0.15);
 }
