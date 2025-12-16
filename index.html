@@ -21,6 +21,9 @@
     <!--chứa bản đồ-->
     <div id="map"></div>
 
+    <!--CHON LOP BAN DO-->
+    
+
 <div id="soil-panel" class="soil-panel hidden">
   <div class="panel-handle"></div>
 
@@ -33,18 +36,17 @@
   <div class="panel-section panel-soil">
     <div class="soil-left">
       <table>
-        <tr><td>Cấy</td><td id="sp-name">EaKpam_23</td></tr>
-        <tr><td>PH</td><td id="sp-ph">4,7 thấp ⚠️</td></tr>
-        <tr><td>OM</td><td id="sp-om">2,1 % nghèo</td></tr>
-        <tr><td>CEC</td><td id="sp-cec">7,5 thấp</td></tr>
-        <tr><td>Cấy</td><td id="">EaKpam_23</td></tr>
-        <tr><td>PH</td><td id="">4,7 thấp ⚠️</td></tr>
-        <tr><td>OM</td><td id="">2,1 % nghèo</td></tr>
-        <tr><td>CEC</td><td id="">7,5 thấp</td></tr>
-        <tr><td>Cấy</td><td id="">EaKpam_23</td></tr>
-        <tr><td>PH</td><td id="">4,7 thấp ⚠️</td></tr>
-        <tr><td>OM</td><td id="">2,1 % nghèo</td></tr>
-        <tr><td>CEC</td><td id="">7,5 thấp</td></tr>
+        <tr><td>Tên đất</td><td id="sp-name">EaKpam_23</td></tr>
+        <tr><td>Ký hiệu</td><td id="sp-ph">4,7 thấp ⚠️</td></tr>
+        <tr><td>Tầng dày</td><td id="sp-om">2,1 % nghèo</td></tr>
+        <tr><td>độ dốc</td><td id="sp-cec">7,5 thấp</td></tr>
+        <tr><td>Thành phần cơ giới</td><td id="">EaKpam_23</td></tr>
+        <tr><td>Hữu cơ OM</td><td id="">4,7 thấp ⚠️</td></tr>
+        <tr><td>Đạm</td><td id="">2,1 % nghèo</td></tr>
+        <tr><td>Lân</td><td id="">7,5 thấp</td></tr>
+        <tr><td>Kali</td><td id="">EaKpam_23</td></tr>
+        <tr><td>CEC</td><td id="">4,7 thấp ⚠️</td></tr>
+        <tr><td>Diện tích</td><td id="">2,1 % nghèo</td></tr>
       </table>
     </div>
     <div class="soil-right">
@@ -60,14 +62,16 @@
         <th>Loại cây</th>
         <th>Ô tiêu chuẩn</th>
       </tr>
-      <tr><td>Sầu riêng</td><td id="Ten_dat">EaKpam_23</td></tr>
-      <tr><td>Cà phê</td><td id="KH_dat">4,7 thấp ⚠️</td></tr>
-      <tr><td>Hồ tiêu</td><td id="Xa">2,1 % nghèo</td></tr>
+      <tr><td>Cà phê</td><td id="Ten_dat">EaKpam_23</td></tr>
+      <tr><td>Hồ tiêu</td><td id="KH_dat">4,7 thấp ⚠️</td></tr>
+      <tr><td>Sầu riêng</td><td id="Xa">2,1 % nghèo</td></tr>
       <tr><td>Lúa</td><td id="Tinh">7,5 thấp</td></tr>
+      <tr><td>Rau các loại</td><td id="Tinh">7,5 thấp</td></tr>
     </table>
 
     <h3 class="panel-subtitle">Hướng dẫn bón phân</h3>
     <div>
+      <!--Cà phê kinh doanh-->
     <table class="panel-table-caphekinhdoanh">
        <tr class="crop-header">
         <th colspan="5">Cây cà phê kinh doanh</th>
@@ -77,19 +81,25 @@
         <th>Urê (kg/ha)</th>
         <th>Kali (kg/ha)</th>
         <th>Lân (kg/ha)</th>
-        <th>NPK (kg/ha)</th>
+        <th>Hoặc NPK<br>(kg/ha)</th>
       </tr>
-
+    <tr class="row-note">
+        <td colspan="5">
+          <b>Bón lót đầu mùa:</b> 10 tấn phân chuồng + 1.000 kg vôi/ha
+        </td>
+    </tr>
       <tr>
-        <td><b>Lần 1</b></td>
+        <td><b>Đầu mùa mưa</b></td>
         <td>400</td>
         <td>700</td>
         <td>900</td>
-        <td>1000 kg NPK 16-16-8</td>
+        <td>
+          <span id="npk-l1"></span> kg NPK 16-16-8
+        </td>
       </tr>
 
       <tr>
-        <td><b>Lần 2</b></td>
+        <td><b>Giữa mùa mưa</b></td>
         <td>400</td>
         <td>900</td>
         <td>—</td>
@@ -97,29 +107,170 @@
       </tr>
 
       <tr>
-        <td><b>Lần 3</b></td>
+        <td><b>Trước thu hoạch</b></td>
         <td>500</td>
         <td>1000</td>
         <td>—</td>
         <td>2000 kg NPK 16-8-16</td>
       </tr>
     </table>
-</div>
-    <!-- Phần thêm ở dưới vẫn nằm trong vùng cuộn -->
-    <table class="panel-table">
-      <tr><td>Sầu riêng</td><td id="Do_doc">EaKpam_23</td></tr>
-      <tr><td>Cà phê</td><td id="Tang_day">4,7 thấp ⚠️</td></tr>
-      <tr><td>Hồ tiêu</td><td id="TPCG">2,1 % nghèo</td></tr>
-      <tr><td>Hữu cơ</td><td id="Huu_co">7,5 thấp</td></tr>
-      <tr><td>Sầu riêng</td><td id="Do_doc2">EaKpam_23</td></tr>
-      <tr><td>Cà phê</td><td id="Tang_day2">4,7 thấp ⚠️</td></tr>
-      <tr><td>Hồ tiêu</td><td id="TPCG2">2,1 % nghèo</td></tr>
-      <tr><td>Hữu cơ</td><td id="Huu_co2">7,5 thấp</td></tr>
+
+<!--Cà phê kiến thiết cơ bản-->
+    <table class="panel-table-caphekinhdoanh">
+       <tr class="crop-header">
+        <th colspan="5">Cây cà phê kiến thiết cơ bản</th>
+      </tr>
+      <tr>
+        <th>Năm</th>
+        <th>Urê (kg/ha)</th>
+        <th>Kali (kg/ha)</th>
+        <th>Lân (kg/ha)</th>
+        <th>Hoặc NPK<br>(kg/ha)</th>
+      </tr>
+    <tr class="row-note">
+        <td colspan="5">
+          <b>Bón lót đầu mùa mỗi năm:</b> 10 tấn phân chuồng + 1.000 kg vôi/ha
+        </td>
+    </tr>
+      <tr>
+        <td><b>Năm 1</b></td>
+        <td>400</td>
+        <td>700</td>
+        <td>900</td>
+        <td>
+          <span id="npk-l1"></span> kg NPK 16-16-8
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Năm 2</b></td>
+        <td>400</td>
+        <td>900</td>
+        <td>—</td>
+          <td>
+          <span id="npk-l2"></span> kg NPK 16-16-8
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Năm 3</b></td>
+        <td>500</td>
+        <td>1000</td>
+        <td>—</td>
+        <td>
+          <span id="npk-l3"></span> kg NPK 16-8-8
+        </td>
+      </tr>
     </table>
+
+      <!--Tiêu kinh doanh-->
+    <table class="panel-table-caphekinhdoanh">
+       <tr class="crop-header">
+        <th colspan="5">Tiêu kinh doanh</th>
+      </tr>
+      <tr>
+        <th>Lần bón</th>
+        <th>Urê (kg/ha)</th>
+        <th>Kali (kg/ha)</th>
+        <th>Lân (kg/ha)</th>
+        <th>Hoặc NPK<br>(kg/ha)</th>
+      </tr>
+    <tr class="row-note">
+        <td colspan="5">
+          <b>Bón lót đầu mùa:</b> 15 tấn phân chuồng + 1.000 kg vôi/ha
+        </td>
+    </tr>
+      <tr>
+        <td><b>Đầu mùa mưa</b></td>
+        <td>400</td>
+        <td>700</td>
+        <td>900</td>
+        <td>
+          <span id="npk-l1"></span> kg NPK 16-16-8
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Giữa mùa mưa</b></td>
+        <td>400</td>
+        <td>900</td>
+        <td>—</td>
+        <td>4000 kg NPK 16-16-8</td>
+      </tr>
+
+      <tr>
+        <td><b>Trước thu hoạch</b></td>
+        <td>500</td>
+        <td>1000</td>
+        <td>—</td>
+        <td>2000 kg NPK 16-8-16</td>
+      </tr>
+    </table>
+
+<!--Tiêu kiến thiết cơ bản-->
+    <table class="panel-table-caphekinhdoanh">
+       <tr class="crop-header">
+        <th colspan="5">Tiêu kiến thiết cơ bản</th>
+      </tr>
+      <tr>
+        <th>Năm</th>
+        <th>Urê (kg/ha)</th>
+        <th>Kali (kg/ha)</th>
+        <th>Lân (kg/ha)</th>
+        <th>Hoặc NPK<br>(kg/ha)</th>
+      </tr>
+    <tr class="row-note">
+        <td colspan="5">
+          <b>Bón lót đầu mùa mỗi năm:</b> 15 tấn phân chuồng + 1.000 kg vôi/ha
+        </td>
+    </tr>
+      <tr>
+        <td><b>Năm 1</b></td>
+        <td>400</td>
+        <td>700</td>
+        <td>900</td>
+        <td>
+          <span id="npk-l1"></span> kg NPK 16-16-8
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Năm 2</b></td>
+        <td>400</td>
+        <td>900</td>
+        <td>—</td>
+          <td>
+          <span id="npk-l2"></span> kg NPK 16-16-8
+        </td>
+      </tr>
+
+      <tr>
+        <td><b>Năm 3</b></td>
+        <td>500</td>
+        <td>1000</td>
+        <td>—</td>
+        <td>
+          <span id="npk-l3"></span> kg NPK 16-8-8
+        </td>
+      </tr>
+    </table>
+
+
+
+
+
+
+
+
+
+<!--phần giữu lại trên-->
+
+</div>
+
   </div>
 </div>
 
-
+<!--phần giữu lại dưới-->
 
     <!--ten bảng quyen-->
     <div id="copyright" style="

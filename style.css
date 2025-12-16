@@ -234,11 +234,16 @@ body,html{
   width: 100%;
   border-collapse: collapse;
   font-size: 13px;
+  border-bottom: none;
+}
+
+.panel-soil tr {
+  border-bottom: 1px solid #e5e7eb;    /* kẻ ngang từng dòng */
 }
 
 .panel-section td:first-child,
 .panel-soil td:first-child {
-  color: #f62d2d;
+  color:black;
   padding-right: 6px;
 }
 .panel-section td:last-child,
@@ -401,3 +406,32 @@ body,html{
 .panel-close:hover{
   background: rgba(0,0,0,0.15);
 }
+
+
+/* PHẦN CHỌN LOP BAN DO*/
+
+/* Menu đổi nền bản đồ (mở ra bên trái cụm nút) */
+.gm-layer-menu{
+  position:absolute;
+  right:54px;
+  top:0;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,.18);
+  padding:6px;
+  min-width:190px;
+  z-index:50;
+}
+.gm-layer-menu button{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  padding:9px 10px;
+  border-radius:10px;
+  font-size:14px;
+  cursor:pointer;
+}
+.gm-layer-menu button:hover{ background:#f3f5f8; }
+.gm-layer-menu .active{ background:#eaf2ff; font-weight:600; }
