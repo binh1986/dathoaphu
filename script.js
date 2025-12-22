@@ -8,9 +8,9 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYmluaDg2IiwiYSI6ImNtNWtma2I3azBqOTIybHNmcDNld
 // Tạo bản đồ nền
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/satellite-streets-v12',
+  style: 'mapbox://styles/mapbox/streets-v12',
   projection: 'globe',
-  zoom: 8,
+  zoom: 1,
   center: [108.11424446587102, 12.880850957736499]
 });
 
@@ -92,7 +92,7 @@ document.addEventListener('click', function (event) {
 
 const colorMap = {
   'krongpak': '#FF5733',
-  'eakar': '#84193B'
+  'eakar': '#FF5733'
 };
 
 let hoveredFeatureId = null;
@@ -102,6 +102,120 @@ let currentHuyen = null;      // "krongpak"
 let currentGeoJSON = null;    // object GeoJSON
 let currentSourceId = null;   // "krongpak"
 let currentLayerId = null;    // "krongpak-layer"
+
+// thêm ranh
+
+// =========================
+// 4C. RANH HÒA PHÚ (mở cùng eakar) - tô đường màu hồng như vùng đệm
+// =========================
+const HOA_PHU_BOUNDARY_FILE = "Ranh_hoa_phu.geojson";
+const HOA_PHU_BOUNDARY_SOURCE = "hoa_phu_boundary";
+const HOA_PHU_BOUNDARY_LAYER  = "hoa_phu_boundary_line";
+
+let hoaPhuBoundaryEnabled = false;
+let hoaPhuBoundaryGeoJSON = null;
+
+function addHoaPhuBoundary() {
+  hoaPhuBoundaryEnabled = true;
+
+  // Nếu đã có rồi thì thôi
+  if (map.getLayer(HOA_PHU_BOUNDARY_LAYER) && map.getSource(HOA_PHU_BOUNDARY_SOURCE)) return;
+
+  const addLayerNow = (data) => {
+    hoaPhuBoundaryGeoJSON = data;
+
+    // tránh add trùng
+    if (map.getLayer(HOA_PHU_BOUNDARY_LAYER)) map.removeLayer(HOA_PHU_BOUNDARY_LAYER);
+    if (map.getSource(HOA_PHU_BOUNDARY_SOURCE)) map.removeSource(HOA_PHU_BOUNDARY_SOURCE);
+
+    map.addSource(HOA_PHU_BOUNDARY_SOURCE, {
+      type: "geojson",
+      data: data
+    });
+
+    map.addLayer({
+      id: HOA_PHU_BOUNDARY_LAYER,
+      type: "line",
+      source: HOA_PHU_BOUNDARY_SOURCE,
+      layout: {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      paint: {
+        "line-color": "#ff4fa3",     // hồng (giống vùng đệm)
+        "line-width": 3,
+        "line-opacity": 0.95,
+        "line-dasharray": [2, 1]     // nét đứt nhẹ (bỏ nếu không thích)
+      }
+    }, currentLayerId || undefined); // nếu muốn nằm trên vùng huyện thì bỏ tham số thứ 2
+  };
+
+  // Nếu đã fetch trước đó thì dùng lại
+  if (hoaPhuBoundaryGeoJSON) {
+    addLayerNow(hoaPhuBoundaryGeoJSON);
+    return;
+  }
+
+  fetch(HOA_PHU_BOUNDARY_FILE)
+    .then(r => r.json())
+    .then(data => addLayerNow(data))
+    .catch(err => console.error("Lỗi khi tải Ranh_hoa_phu.geojson:", err));
+}
+
+function removeHoaPhuBoundary() {
+  hoaPhuBoundaryEnabled = false;
+
+  if (map.getLayer(HOA_PHU_BOUNDARY_LAYER)) map.removeLayer(HOA_PHU_BOUNDARY_LAYER);
+  if (map.getSource(HOA_PHU_BOUNDARY_SOURCE)) map.removeSource(HOA_PHU_BOUNDARY_SOURCE);
+}
+
+// Restore lại ranh khi đổi nền (setStyle)
+function restoreHoaPhuBoundary() {
+
+  // ✅ Nếu không phải đang chọn eakar thì đảm bảo không restore + tắt luôn
+  if (String(currentHuyen || "").toLowerCase() !== "eakar") {
+    removeHoaPhuBoundary();   // tắt luôn (set enabled=false, remove layer/source)
+    return;
+  }
+
+  // ✅ Chỉ chạy tiếp khi ranh đang bật
+  if (!hoaPhuBoundaryEnabled) return;
+
+  // Nếu chưa có data thì gọi add để fetch
+  if (!hoaPhuBoundaryGeoJSON) {
+    addHoaPhuBoundary();
+    return;
+  }
+
+  // add lại source/layer
+  if (map.getLayer(HOA_PHU_BOUNDARY_LAYER)) map.removeLayer(HOA_PHU_BOUNDARY_LAYER);
+  if (map.getSource(HOA_PHU_BOUNDARY_SOURCE)) map.removeSource(HOA_PHU_BOUNDARY_SOURCE);
+
+  map.addSource(HOA_PHU_BOUNDARY_SOURCE, {
+    type: "geojson",
+    data: hoaPhuBoundaryGeoJSON
+  });
+
+  map.addLayer({
+    id: HOA_PHU_BOUNDARY_LAYER,
+    type: "line",
+    source: HOA_PHU_BOUNDARY_SOURCE,
+    layout: { "line-join": "round", "line-cap": "round" },
+    paint: {
+      "line-color": "#ff4fa3",
+      "line-width": 3,
+      "line-opacity": 0.95,
+      "line-dasharray": [2, 1]
+    }
+  });
+
+
+}
+
+
+
+
+
 
 // ✅ Restore layer huyện sau khi map.setStyle()
 function restoreCurrentHuyenLayer() {
@@ -138,6 +252,9 @@ function restoreCurrentHuyenLayer() {
       "fill-outline-color": "#000000"
     }
   });
+
+  // ✅ thêm dòng này
+  restoreHoaPhuBoundary();
 }
 
 // =========================
@@ -200,7 +317,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   huyenRadios.forEach(radio => {
     radio.addEventListener("change", function () {
-      const selectedHuyen = this.value;              // "krongpak"
+      const selectedHuyen = this.value; 
+      const isHoaPhu = selectedHuyen.toLowerCase() === "eakar";
+
+// ✅ Tắt ranh ngay lập tức nếu KHÔNG phải eakar (tránh bị tồn tại do fetch/restore)
+if (!isHoaPhu) removeHoaPhuBoundary();
+             // "krongpak"
       const sourceId = selectedHuyen.toLowerCase();  // "krongpak"
       const layerId = sourceId + "-layer";           // "krongpak-layer"
       const geojsonFile = sourceId + ".geojson";     // "krongpak.geojson"
@@ -247,6 +369,11 @@ document.addEventListener("DOMContentLoaded", function () {
               "fill-outline-color": "#000000"
             }
           });
+
+                    // ✅ Nếu là Hòa Phú (eakar) thì mở ranh xã màu hồng
+          if (selectedHuyen.toLowerCase() === "eakar") addHoaPhuBoundary();
+          else removeHoaPhuBoundary();
+
 
           if (data.features.length > 0 && data.features[0].properties.center) {
             const center = data.features[0].properties.center;
@@ -327,6 +454,12 @@ map.on("click", function (e) {
       map.setFeatureState({ source: currentSourceId2, id: hoveredFeatureId }, { hover: true });
     }
 
+
+    // load anh phau dien
+
+    
+
+
     if (isPanelOpen) {
       slidePanelDown(() => {
         updateSoilPanel(props);
@@ -398,25 +531,23 @@ map.on("click", function (e) {
 // =========================
 
 function updateSoilPanel(props) {
-  document.getElementById('sp-name').textContent = props.KH_pd || props.ID || '—';
+  document.getElementById('Ten_dat').textContent = props.Ten_dat || props.ID || '—';
+  document.getElementById('Kh_dat').textContent = props.Kh_dat || props.ID || '—';
+  document.getElementById('Text_tang_').textContent = props.Text_tang_ || props.ID || '—';
+  document.getElementById('Text_do_do').textContent = props.Text_do_do || props.ID || '—';
+  document.getElementById('Text_tpcg').textContent = props.Text_tpcg || props.ID || '—';
+  document.getElementById('Lv_ph').textContent = props.Lv_ph || props.ID || '—';
+  document.getElementById('Text_om').textContent = props.Text_om || props.ID || '—';
+  document.getElementById('Text_n').textContent = props.Text_n || props.ID || '—';
+  document.getElementById('Text_p').textContent = props.Text_p || props.ID || '—';
+  document.getElementById('Text_k').textContent = props.Text_k || props.ID || '—';
+  
 
-  document.getElementById('sp-ph').textContent =
-    props.pH ? `${props.pH} ${props.pH_muc || ''}` : 'Chưa có';
 
-  document.getElementById('sp-om').textContent =
-    props.Huu_co ? `${props.Huu_co} ${props.OM_muc || ''}` : 'Chưa có';
 
-  document.getElementById('sp-cec').textContent =
-    props.CEC ? `${props.CEC} ${props.CEC_muc || ''}` : 'Chưa có';
+document.getElementById('Dien_tich').textContent = props.Dien_tich || props.ID || '—';
 
-  if (props.Profile_img) {
-    document.getElementById('sp-profile-img').src = props.Profile_img;
-  }
 
-  document.getElementById('KH_dat').textContent = props.KH_dat || '—';
-  document.getElementById('Ten_dat').textContent = props.Ten_dat || 'Chưa có';
-  document.getElementById('Tinh').textContent = props.Tinh || 'Chưa có';
-  document.getElementById('Xa').textContent = props.Xa || 'Chưa có';
 }
 
 // =========================
@@ -519,4 +650,236 @@ class GoogleLikeLayersControl {
     this._container?.parentNode?.removeChild(this._container);
     this._map = null;
   }
+}
+
+
+
+// Đánh giá thích nghi
+// =========================
+// ==================================================
+// I. CHUYỂN MÃ THÍCH NGHI S1 / S2 / S3 / N → CHỮ
+// ==================================================
+const mucThichNghi = {
+  S1: "Thích nghi cao",
+  S2: "Thích nghi trung bình",
+  S3: "Ít thích nghi",
+  N:  "Không thích nghi"
+};
+
+function setTextById(id, value) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = (value == null || value === "") ? "—" : value;
+}
+
+function setThichNghiById(id, rawValue) {
+  if (rawValue == null || rawValue === "") {
+    setTextById(id, "—");
+    return;
+  }
+  const key = String(rawValue).toUpperCase().trim();
+  setTextById(id, mucThichNghi[key] || key);
+}
+
+// ==================================================
+// II. HỆ SỐ ĐỘ PHÌ N – P – K
+// 1: giàu (0.9) | 2: TB (1.0) | 3: nghèo (1.1)
+// ==================================================
+const levelFactorByNumber = { 1: 0.9, 2: 1.0, 3: 1.1 };
+
+function parseLevelNumber(code) {
+  const m = String(code || "").match(/(\d)$/);
+  return m ? Number(m[1]) : null;
+}
+
+function factorFromLv(code) {
+  const n = parseLevelNumber(code);
+  return levelFactorByNumber[n] ?? 1.0;
+}
+
+// ==================================================
+// III. MAP CÂY ↔ TRƯỜNG THÍCH NGHI TRONG GEOJSON
+// ==================================================
+const cropSuitabilityField = {
+  caphekd:      "Tn_caphe",
+  caphekkb:     "Tn_caphe",
+
+  tieukd:       "Tn_hotieu",
+  tieuktcb:     "Tn_hotieu",
+
+  saurienkd:    "Tn_saurien",
+  saurienktcb:  "Tn_saurien",
+
+  luathuan:     "Tn_lua",
+  lualai:       "Tn_lua",
+
+  caibap:       "Tn_rau",
+  caixanh:      "Tn_rau",
+  xalach:       "Tn_rau",
+  hanhla:       "Tn_rau",
+  ot:           "Tn_rau",
+  cachua:       "Tn_rau",
+  daucove:      "Tn_rau",
+
+  maca:         "Tn_maca",
+  caosu:        "Tn_caosu",
+  mia:          "Tn_mia",
+  bap:          "Tn_bap",
+  rau:          "Tn_rau",
+  lua:          "Tn_lua"
+
+};
+
+// ==================================================
+// IV. BÓN PHÂN TỔNG QUÁT – ÁP DỤNG CHO TẤT CẢ CÂY
+// ==================================================
+function updateFertilizerByFertility(props) {
+
+  // Hệ số đất
+  const fN = factorFromLv(props.Lv_n || props.Lv_om);
+  const fP = factorFromLv(props.Lv_p);
+  const fK = factorFromLv(props.Lv_k);
+  const fNPK = (fN + fP + fK) / 3;
+
+  document.querySelectorAll(".amt").forEach(el => {
+    const base = Number(el.dataset.base);
+    const nutr = el.dataset.nutr;   // N | P | K | NPK
+    const crop = el.dataset.crop;   // caphekd | tieukd | lua | ...
+
+    // Không có giá trị gốc
+    if (!Number.isFinite(base) || base <= 0) {
+      el.textContent = "—";
+      return;
+    }
+
+    // Kiểm tra thích nghi cây
+    const suitField = cropSuitabilityField[crop];
+    const suitValue = suitField
+      ? String(props[suitField] || "").toUpperCase().trim()
+      : "";
+
+    // ❌ Không thích nghi → không bón
+    if (suitValue === "N") {
+      el.textContent = "—";
+      return;
+    }
+
+    // Chọn hệ số theo dinh dưỡng
+    const factor =
+      nutr === "N"   ? fN   :
+      nutr === "P"   ? fP   :
+      nutr === "K"   ? fK   :
+      nutr === "NPK" ? fNPK : 1.0;
+
+const raw = base * factor;
+
+const decimals = Number.isFinite(Number(el.dataset.decimals))
+  ? Number(el.dataset.decimals)
+  : 0;
+
+el.textContent = raw.toLocaleString("vi-VN", {
+  minimumFractionDigits: decimals,
+  maximumFractionDigits: decimals
+});
+
+  });
+}
+
+// load anh
+// =========================
+// ẢNH PHẪU DIỆN TỰ ĐỔI THEO KÝ HIỆU ĐẤT (Ru/Fk/Dk/Fs)
+// =========================
+const SOIL_IMG_FOLDER = "image/";           // thư mục ảnh của anh
+const DEFAULT_SOIL_IMG = "soil_profile.jpg"; // ảnh mặc định
+
+// các đuôi file thường gặp (ưu tiên .JPG vì anh đang dùng Ru.JPG)
+const IMG_EXTS = [".JPG", ".jpg", ".png", ".jpeg", ".webp"];
+
+// tìm Ru/Fk/Dk/Fs trong 1 chuỗi
+function extractSoilSymbolFromString(v) {
+  if (v == null) return null;
+  const s = String(v);
+  // bắt đúng Ru/Fk/Dk/Fs như 1 "từ" độc lập
+  const m = s.match(/\b(Ru|Fk|Dk|Fs)\b/i);
+  if (!m) return null;
+
+  const k = m[1].toLowerCase();
+  return k[0].toUpperCase() + k.slice(1); // Ru/Fk/Dk/Fs
+}
+
+// ✅ QUAN TRỌNG: quét TẤT CẢ props để tìm ký hiệu
+function findSoilSymbolAnywhere(props) {
+  // thử nhanh vài field hay gặp trước
+  const likelyKeys = ["Ky_hieu", "KyHieu", "Kh_dat", "G", "Loai_dat", "Ten_dat", "ID_dat"];
+  for (const key of likelyKeys) {
+    if (props && Object.prototype.hasOwnProperty.call(props, key)) {
+      const sym = extractSoilSymbolFromString(props[key]);
+      if (sym) return sym;
+    }
+  }
+  // quét toàn bộ
+  for (const [k, v] of Object.entries(props || {})) {
+    const sym = extractSoilSymbolFromString(v);
+    if (sym) return sym;
+  }
+  return null;
+}
+
+// thử load ảnh theo danh sách đuôi, nếu fail thì thử đuôi tiếp theo
+function trySetImgWithFallback(imgEl, basePathNoExt, exts, i = 0) {
+  if (i >= exts.length) {
+    imgEl.src = DEFAULT_SOIL_IMG;
+    return;
+  }
+  imgEl.onerror = () => trySetImgWithFallback(imgEl, basePathNoExt, exts, i + 1);
+  imgEl.src = basePathNoExt + exts[i];
+}
+
+// hàm chính: set ảnh theo ký hiệu tìm được
+function setSoilProfileImage(props) {
+  const imgEl = document.getElementById("sp-profile-img");
+  if (!imgEl) return;
+
+  const sym = findSoilSymbolAnywhere(props); // Ru/Fk/Dk/Fs
+  if (!sym) {
+    imgEl.src = DEFAULT_SOIL_IMG;
+    return;
+  }
+
+  const base = SOIL_IMG_FOLDER + sym; // ví dụ: image/Ru
+  trySetImgWithFallback(imgEl, base, IMG_EXTS);
+}
+
+
+// ==================================================
+// V. UPDATE PANEL ĐẤT – CHỈ GỌI 1 DÒNG BÓN PHÂN
+// ==================================================
+function updateSoilPanel(props) {
+
+  // Thuộc tính đất
+  setTextById('Ten_dat',   props.Ten_dat || props.ID);
+  setTextById('Kh_dat',    props.Kh_dat);
+  setTextById('Text_tang_',props.Text_tang_);
+  setTextById('Text_do_do',props.Text_do_do);
+  setTextById('Text_tpcg', props.Text_tpcg);
+  setTextById('Lv_ph',     props.Lv_ph);
+  setTextById('Text_om',   props.Text_om);
+  setTextById('Text_n',    props.Text_n);
+  setTextById('Text_p',    props.Text_p);
+  setTextById('Text_k',    props.Text_k);
+  setTextById('Dien_tich', props.Dien_tich);
+
+  // Thích nghi cây trồng
+  setThichNghiById("Tn_lua",     props.Tn_lua);
+  setThichNghiById("Tn_mia",     props.Tn_mia);
+  setThichNghiById("Tn_bap",     props.Tn_bap);
+  setThichNghiById("Tn_rau",     props.Tn_rau);
+  setThichNghiById("Tn_caphe",   props.Tn_caphe);
+  setThichNghiById("Tn_saurien", props.Tn_saurien);
+  setThichNghiById("Tn_hotieu",  props.Tn_hotieu);
+  setThichNghiById("Tn_maca",    props.Tn_maca);
+  setThichNghiById("Tn_caosu",   props.Tn_caosu);
+
+  // ✅ BÓN PHÂN THEO ĐỘ PHÌ + THÍCH NGHI
+  updateFertilizerByFertility(props);
 }

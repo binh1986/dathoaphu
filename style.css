@@ -435,3 +435,13 @@ body,html{
 }
 .gm-layer-menu button:hover{ background:#f3f5f8; }
 .gm-layer-menu .active{ background:#eaf2ff; font-weight:600; }
+
+
+
+
+/* phần bảng thuộc tính */
+
+#Dien_tich:not(:empty)::after {
+  content: " ha";
+}
+

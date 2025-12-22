@@ -36,22 +36,20 @@
   <div class="panel-section panel-soil">
     <div class="soil-left">
       <table>
-        <tr><td>Tên đất</td><td id="sp-name">EaKpam_23</td></tr>
-        <tr><td>Ký hiệu</td><td id="sp-ph">4,7 thấp ⚠️</td></tr>
-        <tr><td>Tầng dày</td><td id="sp-om">2,1 % nghèo</td></tr>
-        <tr><td>độ dốc</td><td id="sp-cec">7,5 thấp</td></tr>
-        <tr><td>Thành phần cơ giới</td><td id="">EaKpam_23</td></tr>
-        <tr><td>Hữu cơ OM</td><td id="">4,7 thấp ⚠️</td></tr>
-        <tr><td>Đạm</td><td id="">2,1 % nghèo</td></tr>
-        <tr><td>Lân</td><td id="">7,5 thấp</td></tr>
-        <tr><td>Kali</td><td id="">EaKpam_23</td></tr>
-        <tr><td>CEC</td><td id="">4,7 thấp ⚠️</td></tr>
-        <tr><td>Diện tích</td><td id="">2,1 % nghèo</td></tr>
+        <tr><td>Tên đất</td><td id="Ten_dat">EaKpam_23</td></tr>
+        <tr><td>Ký hiệu</td><td id="Kh_dat">4,7 thấp ⚠️</td></tr>
+        <tr><td>Tầng dày</td><td id="Text_tang_"></td></tr>
+        <tr><td>độ dốc</td><td id="Text_do_do"></td></tr>
+        <tr><td>Thành phần cơ giới</td><td id="Text_tpcg"></td></tr>
+        <tr><td>pH đất</td><td id="Lv_ph"></td></tr>
+        <tr><td>Hữu cơ</td><td id="Text_om"></td></tr>
+        <tr><td>Đạm</td><td id="Text_n"></td></tr>
+        <tr><td>Lân</td><td id="Text_p"></td></tr>
+        <tr><td>Kali</td><td id="Text_k"></td></tr>
+        <tr><td>Diện tích</td><td id="Dien_tich"></td></tr>
       </table>
     </div>
-    <div class="soil-right">
-      <img id="sp-profile-img" src="soil_profile.jpg" alt="Soil profile">
-    </div>
+
   </div>
 
   <!-- PHẦN CUỘN: bọc trong .panel-scroll -->
@@ -59,208 +57,800 @@
     <h3 class="panel-subtitle">Thích nghi cây trồng</h3>
     <table class="panel-table">
       <tr>
-        <th>Loại cây</th>
-        <th>Ô tiêu chuẩn</th>
+        <th style="background:#e8f5e9; color:#1b5e20; font-weight:700;">Loại cây</th>
+        <th style="background:#e8f5e9; color:#1b5e20; font-weight:700;">Cấp thích nghi</th>
       </tr>
-      <tr><td>Cà phê</td><td id="Ten_dat">EaKpam_23</td></tr>
-      <tr><td>Hồ tiêu</td><td id="KH_dat">4,7 thấp ⚠️</td></tr>
-      <tr><td>Sầu riêng</td><td id="Xa">2,1 % nghèo</td></tr>
-      <tr><td>Lúa</td><td id="Tinh">7,5 thấp</td></tr>
-      <tr><td>Rau các loại</td><td id="Tinh">7,5 thấp</td></tr>
+      <tr><td>Lúa</td><td id="Tn_lua"></td></tr>
+      <tr><td>Mía</td><td id="Tn_mia"></td></tr>
+      <tr><td>Bắp</td><td id="Tn_bap"></td></tr>
+      <tr><td>Rau, màu</td><td id="Tn_rau"></td></tr>
+      <tr><td>Cà phê</td><td id="Tn_caphe"></td></tr>
+      <tr><td>Sầu riêng</td><td id="Tn_saurien"></td></tr>
+      <tr><td>Hồ tiêu</td><td id="Tn_hotieu"></td></tr>
+      <tr><td>Mắc ca</td><td id="Tn_maca"></td></tr>
+      <tr><td>Cao su</td><td id="Tn_caosu"></td></tr>
     </table>
 
     <h3 class="panel-subtitle">Hướng dẫn bón phân</h3>
     <div>
-      <!--Cà phê kinh doanh-->
-    <table class="panel-table-caphekinhdoanh">
-       <tr class="crop-header">
-        <th colspan="5">Cây cà phê kinh doanh</th>
-      </tr>
-      <tr>
-        <th>Lần bón</th>
-        <th>Urê (kg/ha)</th>
-        <th>Kali (kg/ha)</th>
-        <th>Lân (kg/ha)</th>
-        <th>Hoặc NPK<br>(kg/ha)</th>
-      </tr>
-    <tr class="row-note">
-        <td colspan="5">
-          <b>Bón lót đầu mùa:</b> 10 tấn phân chuồng + 1.000 kg vôi/ha
-        </td>
-    </tr>
-      <tr>
-        <td><b>Đầu mùa mưa</b></td>
-        <td>400</td>
-        <td>700</td>
-        <td>900</td>
+    <!--Cà phê kinh doanh-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Cây cà phê kinh doanh</th>
+  </tr>
+  <tr>
+    <th>Lần bón</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+    <th>Hoặc NPK<br>(kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5"><b>Bón lót đầu mùa:</b> 10-15 tấn phân chuồng + 1.000 kg vôi/ha</td>
+  </tr>
+
+  <tr>
+    <td><b>Đầu mùa mưa</b></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="N" data-base="174" id="cfkd-1-ure"></span></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="P" data-base="250" id="cfkd-1-lan"></span></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="K" data-base="67" id="cfkd-1-kcl"></span></td>
+        <td><span class="amt" data-crop="caphekd" data-nutr="NPK" data-base="500" id="cfkd-1-npk"></span></td>
+  </tr>
+
+  <tr>
+    <td><b>Giữa mùa mưa</b></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="N" data-base="130" id="cfkd-2-ure"></span></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="P" data-base="125" id="cfkd-2-lan"></span></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="K" data-base="50" id="cfkd-2-kcl"></span></td>
+        <td><span class="amt" data-crop="caphekd" data-nutr="NPK" data-base="700" id="cfkd-2-npk">—</span></td>
+  </tr>
+
+  <tr>
+    <td><b>Trước thu hoạch</b></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="N" data-base="131" id="cfkd-3-ure"></span></td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="K" data-base="150" id="cfkd-3-kcl"></span></td>
+    <td>—</td>
+    <td><span class="amt" data-crop="caphekd" data-nutr="NPK" data-base="375" id="cfkd-3-npk"></span> <span class="npk-label">kg NPK 16-16-8</span></td>
+  </tr>
+</table>
+
+<!-- Cà phê kiến thiết cơ bản -->
+<table class="panel-table-caphekinhdoanh">
+
+  <tr class="crop-header">
+    <th colspan="5">Cây cà phê kiến thiết cơ bản</th>
+  </tr>
+
+  <tr>
+    <th>Năm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+    <th>Hoặc NPK<br>(kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu mùa mỗi năm:</b> 10-15 tấn phân chuồng + 1.000 kg vôi/ha
+    </td>
+  </tr>
+
+  <!-- Năm 1 -->
+  <tr>
+    <td><b>Năm 1</b></td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="N"
+            data-base="175">—</span>
+    </td>
+
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="P"
+            data-base="425">—</span>
+    </td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="K"
+            data-base="100">—</span>
+    </td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="NPK"
+            data-base="500"></span>
+      <span class="npk-label">kg NPK 16-16-8</span>
+  <span class="npk-warning" style="display:none; color:#c62828; font-weight:600;">
+    (Không thích nghi – không khuyến nghị bón)
+  </span>
+    </td>
+  </tr>
+
+  <!-- Năm 2 -->
+  <tr>
+    <td><b>Năm 2</b></td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="N"
+            data-base="400">—</span>
+    </td>
         <td>
-          <span id="npk-l1"></span> kg NPK 16-16-8
-        </td>
-      </tr>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="P"
+            data-base="625">—</span>
+    </td>
+      <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="K"
+            data-base="167">—</span>
+    </td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="NPK"
+            data-base="750">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
 
-      <tr>
-        <td><b>Giữa mùa mưa</b></td>
-        <td>400</td>
-        <td>900</td>
-        <td>—</td>
-        <td>4000 kg NPK 16-16-8</td>
-      </tr>
-
-      <tr>
-        <td><b>Trước thu hoạch</b></td>
-        <td>500</td>
-        <td>1000</td>
-        <td>—</td>
-        <td>2000 kg NPK 16-8-16</td>
-      </tr>
-    </table>
-
-<!--Cà phê kiến thiết cơ bản-->
-    <table class="panel-table-caphekinhdoanh">
-       <tr class="crop-header">
-        <th colspan="5">Cây cà phê kiến thiết cơ bản</th>
-      </tr>
-      <tr>
-        <th>Năm</th>
-        <th>Urê (kg/ha)</th>
-        <th>Kali (kg/ha)</th>
-        <th>Lân (kg/ha)</th>
-        <th>Hoặc NPK<br>(kg/ha)</th>
-      </tr>
-    <tr class="row-note">
-        <td colspan="5">
-          <b>Bón lót đầu mùa mỗi năm:</b> 10 tấn phân chuồng + 1.000 kg vôi/ha
-        </td>
-    </tr>
-      <tr>
-        <td><b>Năm 1</b></td>
-        <td>400</td>
-        <td>700</td>
-        <td>900</td>
+  <!-- Năm 3 -->
+  <tr>
+    <td><b>Năm 3</b></td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="N"
+            data-base="348">—</span>
+    </td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="P"
+            data-base="875">—</span>
+    </td>
         <td>
-          <span id="npk-l1"></span> kg NPK 16-16-8
-        </td>
-      </tr>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="K"
+            data-base="267">—</span>
+    </td>
+    <td>
+      <span class="amt"
+            data-crop="caphekkb"
+            data-nutr="NPK"
+            data-base="1000">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
 
-      <tr>
-        <td><b>Năm 2</b></td>
-        <td>400</td>
-        <td>900</td>
-        <td>—</td>
-          <td>
-          <span id="npk-l2"></span> kg NPK 16-16-8
-        </td>
-      </tr>
+</table>
 
-      <tr>
-        <td><b>Năm 3</b></td>
-        <td>500</td>
-        <td>1000</td>
-        <td>—</td>
-        <td>
-          <span id="npk-l3"></span> kg NPK 16-8-8
-        </td>
-      </tr>
-    </table>
+<!--Tiêu kinh doanh (dùng chung style với cà phê)-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Tiêu kinh doanh</th>
+  </tr>
+  <tr>
+    <th>Lần bón</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+    <th>Hoặc NPK<br>(kg/ha)</th>
+  </tr>
 
-      <!--Tiêu kinh doanh-->
-    <table class="panel-table-caphekinhdoanh">
-       <tr class="crop-header">
-        <th colspan="5">Tiêu kinh doanh</th>
-      </tr>
-      <tr>
-        <th>Lần bón</th>
-        <th>Urê (kg/ha)</th>
-        <th>Kali (kg/ha)</th>
-        <th>Lân (kg/ha)</th>
-        <th>Hoặc NPK<br>(kg/ha)</th>
-      </tr>
-    <tr class="row-note">
-        <td colspan="5">
-          <b>Bón lót đầu mùa:</b> 15 tấn phân chuồng + 1.000 kg vôi/ha
-        </td>
-    </tr>
-      <tr>
-        <td><b>Đầu mùa mưa</b></td>
-        <td>400</td>
-        <td>700</td>
-        <td>900</td>
-        <td>
-          <span id="npk-l1"></span> kg NPK 16-16-8
-        </td>
-      </tr>
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu mùa:</b> 15 tấn phân chuồng + 1.000 kg vôi/ha
+    </td>
+  </tr>
 
-      <tr>
-        <td><b>Giữa mùa mưa</b></td>
-        <td>400</td>
-        <td>900</td>
-        <td>—</td>
-        <td>4000 kg NPK 16-16-8</td>
-      </tr>
+  <tr>
+    <td><b>Đầu mùa mưa</b></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="N"   data-base="104" id="tieu-ure-1">—</span></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="P"   data-base="300" id="tieu-p-1">—</span></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="K"   data-base="40" id="tieu-k-1">—</span></td>
+    <td>
+      <span class="amt" data-crop="tieukd" data-nutr="NPK" data-base="300" id="tieu-npk-1">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
 
-      <tr>
-        <td><b>Trước thu hoạch</b></td>
-        <td>500</td>
-        <td>1000</td>
-        <td>—</td>
-        <td>2000 kg NPK 16-8-16</td>
-      </tr>
-    </table>
+  <tr>
+    <td><b>Giữa mùa mưa</b></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="N"   data-base="78"  id="tieu-ure-2">—</span></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="K"   data-base="150"  id="tieu-p-2">—</span></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="K"   data-base="60"  id="tieu-k-2">—</span></td>
+    <td>
+      <span class="amt" data-crop="tieukd" data-nutr="NPK" data-base="225" id225="tieu-npk-2">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Trước thu hoạch</b></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="N"   data-base="104"  id="tieu-ure-3">—</span></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="P"   data-base="150" id="tieu-p-3">—</span></td>
+    <td><span class="amt" data-crop="tieukd" data-nutr="K"   data-base="120" id="tieu-k-3">—</span></td>
+    <td>
+      <span class="amt" data-crop="tieukd" data-nutr="NPK" data-base="300" id="tieu-npk-3">—</span>
+      kg NPK 16-8-16
+    </td>
+  </tr>
+</table>
+
 
 <!--Tiêu kiến thiết cơ bản-->
-    <table class="panel-table-caphekinhdoanh">
-       <tr class="crop-header">
-        <th colspan="5">Tiêu kiến thiết cơ bản</th>
-      </tr>
-      <tr>
-        <th>Năm</th>
-        <th>Urê (kg/ha)</th>
-        <th>Kali (kg/ha)</th>
-        <th>Lân (kg/ha)</th>
-        <th>Hoặc NPK<br>(kg/ha)</th>
-      </tr>
-    <tr class="row-note">
-        <td colspan="5">
-          <b>Bón lót đầu mùa mỗi năm:</b> 15 tấn phân chuồng + 1.000 kg vôi/ha
-        </td>
-    </tr>
-      <tr>
-        <td><b>Năm 1</b></td>
-        <td>400</td>
-        <td>700</td>
-        <td>900</td>
-        <td>
-          <span id="npk-l1"></span> kg NPK 16-16-8
-        </td>
-      </tr>
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Tiêu kiến thiết cơ bản</th>
+  </tr>
+  <tr>
+    <th>Năm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+    <th>Hoặc NPK<br>(kg/ha)</th>
+  </tr>
 
-      <tr>
-        <td><b>Năm 2</b></td>
-        <td>400</td>
-        <td>900</td>
-        <td>—</td>
-          <td>
-          <span id="npk-l2"></span> kg NPK 16-16-8
-        </td>
-      </tr>
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu mùa mỗi năm:</b> 15 tấn phân chuồng + 1.000 kg vôi/ha
+    </td>
+  </tr>
 
-      <tr>
-        <td><b>Năm 3</b></td>
-        <td>500</td>
-        <td>1000</td>
-        <td>—</td>
-        <td>
-          <span id="npk-l3"></span> kg NPK 16-8-8
-        </td>
-      </tr>
-    </table>
+  <tr>
+    <td><b>Năm 1</b></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="N"   data-base="104" id="tieuKTCB-1-ure">—</span></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="P"   data-base="300" id="tieuKTCB-1-p">—</span></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="K"   data-base="40" id="tieuKTCB-1-k">—</span></td>
+    <td>
+      <span class="amt" data-crop="tieuktcb" data-nutr="NPK" data-base="300" id="tieuKTCB-1-npk">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Năm 2</b></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="N"   data-base="156" id="tieuKTCB-2-ure">—</span></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="P"   data-base="450" id="tieuKTCB-2-p">—</span></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="K"   data-base="80" id="tieuKTCB-2-k">—</span></td>
+    <td>
+      <span class="amt" data-crop="tieuktcb" data-nutr="NPK" data-base="450" id="tieuKTCB-2-npk">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Năm 3</b></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="N"   data-base="209"  id="tieuKTCB-3-ure">—</span></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="P"   data-base="600" id="tieuKTCB-3-p">—</span></td>
+    <td><span class="amt" data-crop="tieuktcb" data-nutr="K"   data-base="160" id="tieuKTCB-3-k">—</span></td>
+    <td>
+      <span class="amt" data-crop="tieuktcb" data-nutr="NPK" data-base="600" id="tieuKTCB-3-npk">—</span>
+      kg NPK 16-8-8
+    </td>
+  </tr>
+</table>
+
+<!--Sầu riêng kinh doanh-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="2">Sầu riêng kinh doanh</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm bón</th>
+    <th>NPK (kg/cây)</th>
+  </tr>
+<tr class="row-note">
+  <td colspan="2">
+    <b>Bón lót sau thu hoạch:</b> Hữu cơ 5 kg/cây (bón theo hốc/tán, lấp đất, giữ ẩm).
+  </td>
+</tr>
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Phục hồi cây</b></td>
+    <td>
+      <span class="amt" data-crop="saurienkd" data-nutr="NPK" data-base="1.6" data-decimals="1" id="srkd-npk-2">—</span>
+      kg NPK 16-16-13
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Ra hoa</b></td>
+    <td>
+      <span class="amt" data-crop="saurienkd" data-nutr="NPK" data-base="0.5" data-decimals="1" id="srkd-npk-3">—</span>
+      kg NPK 12-11-18
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Sau đậu trái</b></td>
+    <td>
+      <span class="amt" data-crop="saurienkd" data-nutr="NPK" data-base="1.0" data-decimals="1" id="srkd-npk-4">—</span>
+      kg NPK 12-11-18
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Vô cơm</b></td>
+    <td>
+      <span class="amt" data-crop="saurienkd" data-nutr="NPK" data-base="0.5" data-decimals="1" id="srkd-npk-5">—</span>
+      kg NPK 15-15-15
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Trước thu hoạch</b></td>
+    <td>
+      <span class="amt" data-crop="saurienkd" data-nutr="NPK" data-base="0.8" data-decimals="1" id="srkd-npk-6">—</span>
+      kg NPK 12-11-18
+    </td>
+  </tr>
+</table>
+
+    
+<!--Sầu riêng kiến thiết cơ bản-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Sầu riêng kiến thiết cơ bản</th>
+  </tr>
+
+  <tr>
+    <th>Năm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+    <th>Hoặc NPK<br>(kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu mùa mỗi năm:</b> 15 tấn phân chuồng hoặc hữu cơ
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Năm 1</b></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="N" data-base="82" id="srKTCB-1-ure">—</span></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="P" data-base="253" id="srKTCB-1-p">—</span></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="K" data-base="62.5" data-decimals="1" id="srKTCB-1-k">—</span></td>
+    <td>
+      <span class="amt" data-crop="saurienktcb" data-nutr="NPK" data-base="250" id="srKTCB-1-npk">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Năm 2</b></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="N" data-base="122" id="srKTCB-2-ure">—</span></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="P" data-base="350" id="srKTCB-2-p">—</span></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="K" data-base="47" id="srKTCB-2-k">—</span></td>
+    <td>
+      <span class="amt" data-crop="saurienktcb" data-nutr="NPK" data-base="350" id="srKTCB-2-npk">—</span>
+      kg NPK 16-16-8
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Năm 3</b></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="N" data-base="176" id="srKTCB-3-ure">—</span></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="P" data-base="225" id="srKTCB-3-p">—</span></td>
+    <td><span class="amt" data-crop="saurienktcb" data-nutr="K" data-base="135" id="srKTCB-3-k">—</span></td>
+    <td>
+      <span class="amt" data-crop="saurienktcb" data-nutr="NPK" data-base="450" id="srKTCB-3-npk">—</span>
+      kg NPK 16-8-8
+    </td>
+  </tr>
+</table>
 
 
+<!--Lúa Thuần-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Lúa thuần</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 5-10 tấn phân chuồng + 300 kg vôi/ha + 200 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Đẻ nhánh (7-10 ngày)</b></td>
+    <td><span class="amt" data-crop="luathuan" data-nutr="N" data-base="50" id="luaT-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Đẻ nhánh (20-25 ngày)</b></td>
+    <td><span class="amt" data-crop="luathuan" data-nutr="N" data-base="60" id="luaT-2-ure">—</span></td>
+    <td><span class="amt" data-crop="luathuan" data-nutr="K" data-base="40" id="luaT-2-k">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Làm đòng</b></td>
+    <td><span class="amt" data-crop="luathuan" data-nutr="N" data-base="40" id="luaT-3-ure">—</span></td>
+    <td><span class="amt" data-crop="luathuan" data-nutr="K" data-base="60" id="luaT-3-k">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Trổ bông</b></td>
+    <td>—</td>
+    <td><span class="amt" data-crop="luathuan" data-nutr="K" data-base="10" id="luaT-4-k">—</span></td>
+    <td>—</td>
+  </tr>
+</table>
 
 
+<!--Lúa lai-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Lúa lai</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 5-10 tấn phân chuồng + 300 kg vôi/ha + 200 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Đẻ nhánh (7-10 ngày)</b></td>
+    <td><span class="amt" data-crop="lualai" data-nutr="N" data-base="70" id="luaL-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Đẻ nhánh (20-25 ngày)</b></td>
+    <td><span class="amt" data-crop="lualai" data-nutr="N" data-base="80" id="luaL-2-ure">—</span></td>
+    <td><span class="amt" data-crop="lualai" data-nutr="K" data-base="50" id="luaL-2-k">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Làm đòng</b></td>
+    <td><span class="amt" data-crop="lualai" data-nutr="N" data-base="60" id="luaL-3-ure">—</span></td>
+    <td><span class="amt" data-crop="lualai" data-nutr="K" data-base="70" id="luaL-3-k">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Trổ bông</b></td>
+    <td>—</td>
+    <td><span class="amt" data-crop="lualai" data-nutr="K" data-base="20" id="luaL-4-k">—</span></td>
+    <td>—</td>
+  </tr>
+</table>
+
+  
+<!--Cải Bắp-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Cải bắp</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 1000 kg hữu cơ vi sinh + 1000 kg vôi/ha + 337,5 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (7-10 ngày)</b></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="N" data-base="30" id="caibap-1-ure">—</span></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="P" data-base="100" id="caibap-1-p">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (23-25 ngày)</b></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="N" data-base="50" id="caibap-2-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 3 (45 ngày)</b></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="N" data-base="70" id="caibap-3-ure">—</span></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="K" data-base="50" id="caibap-3-k">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 4 (60-65 ngày)</b></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="N" data-base="100" id="caibap-4-ure">—</span></td>
+    <td><span class="amt" data-crop="caibap" data-nutr="K" data-base="100" id="caibap-4-k">—</span></td>
+    <td>—</td>
+  </tr>
+</table>
 
 
+<!--Rau cải: Cải Xanh, Cải Ngọt-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Cải Xanh, cải Ngọt</th>
+  </tr>
 
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 25-30 m2 phân chuồng + 1000 kg hữu cơ vi sinh + 1000 kg vôi/ha + 250 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (7-10 ngày)</b></td>
+    <td><span class="amt" data-crop="caixanh" data-nutr="N" data-base="30" id="caixanh-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (18-22 ngày)</b></td>
+    <td><span class="amt" data-crop="caixanh" data-nutr="N" data-base="40" id="caixanh-2-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 3 (30-35 ngày)</b></td>
+    <td>—</td>
+    <td>—</td>
+    <td><span class="amt" data-crop="caixanh" data-nutr="K" data-base="40" id="caixanh-3-k">—</span></td>
+  </tr>
+</table>
+
+<!--Xà lách-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Rau xà lách</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 20-25 m2 phân chuồng + 700 kg hữu cơ vi sinh + 1000 kg vôi/ha + 200 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (10 ngày)</b></td>
+    <td><span class="amt" data-crop="xalach" data-nutr="N" data-base="30" id="xalach-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (20-25 ngày)</b></td>
+    <td><span class="amt" data-crop="xalach" data-nutr="N" data-base="40" id="xalach-2-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+</table>
+
+
+<!--Hành lá-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Hành lá</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 20-25 m2 phân chuồng + 700 kg hữu cơ vi sinh + 1000 kg vôi/ha + 250 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (10 ngày)</b></td>
+    <td><span class="amt" data-crop="hanhla" data-nutr="N" data-base="40" id="hanhla-1-ure">—</span></td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (25 ngày)</b></td>
+    <td><span class="amt" data-crop="hanhla" data-nutr="N" data-base="40" id="hanhla-2-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 3 (40 ngày)</b></td>
+    <td>—</td>
+    <td><span class="amt" data-crop="hanhla" data-nutr="K" data-base="60" id="hanhla-3-k">—</span></td>
+    <td>—</td>
+  </tr>
+</table>
+
+<!--Ớt-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Cây ớt</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 30-35 m2 phân chuồng + 1000 kg hữu cơ vi sinh + 1000 kg vôi/ha + 300 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (15 ngày)</b></td>
+    <td><span class="amt" data-crop="ot" data-nutr="N" data-base="40" id="ot-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (30 ngày)</b></td>
+    <td><span class="amt" data-crop="ot" data-nutr="N" data-base="40" id="ot-2-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Ra hoa</b></td>
+    <td>—</td>
+    <td>—</td>
+    <td><span class="amt" data-crop="ot" data-nutr="K" data-base="50" id="ot-3-k">—</span></td>
+    
+  </tr>
+
+  <tr>
+    <td><b>Sau mỗi đợt thu</b></td>
+    <td>—</td>
+    <td>—</td>
+    <td><span class="amt" data-crop="ot" data-nutr="K" data-base="30" id="ot-4-k">—</span></td>
+    
+  </tr>
+</table>
+
+<!--Cà chua-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="5">Cà chua</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="5">
+      <b>Bón lót đầu vụ:</b> 35-40 m2 phân chuồng + 1000 kg hữu cơ vi sinh + 1000 kg vôi/ha + 350 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (15 ngày)</b></td>
+    <td><span class="amt" data-crop="cachua" data-nutr="N" data-base="40" id="cachua-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (30 ngày)</b></td>
+    <td><span class="amt" data-crop="cachua" data-nutr="N" data-base="40" id="cachua-2-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Ra hoa</b></td>
+    <td>—</td>
+    <td>—</td>
+    <td><span class="amt" data-crop="cachua" data-nutr="K" data-base="60" id="cachua-3-k">—</span></td>
+  </tr>
+
+  <tr>
+    <td><b>Nuôi quả</b></td>
+    <td>—</td>
+    <td>—</td>
+    <td><span class="amt" data-crop="cachua" data-nutr="K" data-base="80" id="cachua-4-k">—</span></td>
+    
+  </tr>
+</table>
+
+
+<!--Đậu cô ve-->
+<table class="panel-table-caphekinhdoanh">
+  <tr class="crop-header">
+    <th colspan="4">Đậu cô ve</th>
+  </tr>
+
+  <tr>
+    <th>Thời điểm</th>
+    <th>Urê (kg/ha)</th>
+    <th>Lân (kg/ha)</th>
+    <th>Kali (kg/ha)</th>
+  </tr>
+
+  <tr class="row-note">
+    <td colspan="4">
+      <b>Bón lót đầu vụ:</b> 20-25 m2 phân chuồng + 1000 kg hữu cơ vi sinh + 1000 kg vôi/ha + 350 kg lân
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 1 (10 ngày)</b></td>
+    <td><span class="amt" data-crop="daucove" data-nutr="N" data-base="20" id="daucove-1-ure">—</span></td>
+    <td>—</td>
+    <td>—</td>
+  </tr>
+
+  <tr>
+    <td><b>Lần 2 (Ra hoa)</b></td>
+    <td>—</td>
+    <td>—</td>
+    <td><span class="amt" data-crop="daucove" data-nutr="K" data-base="40" id="daucove-2-k">—</span></td>
+    <td>—</td>
+  </tr>
+</table>
 
 
 <!--phần giữu lại trên-->
@@ -293,8 +883,9 @@
         <div class="tinh-list" id="taynguyen" style="display: none;">
             <div class="tinh-item" onclick="toggledaklakList('daklak')">ĐẮK LẮK</div>
                 <div class="huyen-list" id="daklak" style="display: none;">
-                    <div class="huyen-item"><input type="radio" name="huyen" value="krongpak" class="huyen-radio"> Xã Hòa Phú</div>
-                    <div class="huyen-item"><input type="radio" name="huyen" value="eakar" class="huyen-radio"> Phường Tân Lập</div>
+                    
+                    <div class="huyen-item"><input type="radio" name="huyen" value="eakar" class="huyen-radio"> Xã Hòa Phú</div>
+                    <div class="huyen-item"><input type="radio" name="huyen" value="" class="huyen-radio"> Phường Tân Lập</div>
                 </div>
                 <!-- tỉnh gia lai kon tum-->
             <div class="tinh-item" onclick="togglegialaikontum('gialaikontum')">GIA LAI</div>
